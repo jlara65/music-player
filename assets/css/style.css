@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #352f44;
+}
+
+.title {
+  background-color: #eeeeee;
+  margin: 45px;
+  padding: 15px;
+  font-size: 25px;
+  font-family: "Times New Roman", Times, serif;
+}
+.relative {
+  margin: auto 100px auto;
+}
+
+.box-card {
+  background-color: #eeeeee;
+  margin: 5em;
+}
