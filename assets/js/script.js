@@ -1,4 +1,6 @@
+
 var artistName = "eminem";
+
 
 var topTracks = {
 	"async": true,
@@ -11,7 +13,8 @@ var topTracks = {
 	}
 };
 
-var billBoard = {
+/* Maxed the limited # of request
+ var billBoard = {
 	"async": true,
 	"crossDomain": true,
 	"url": "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-01&range=1-5",
@@ -20,10 +23,10 @@ var billBoard = {
 		"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
 		"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com"
 	}
-};
+}; */
 
 
-$.ajax(topTracks).then((response) => {
+/* $.ajax(topTracks).then((response) => {       // Good code.
 	//console.log(response);
     var trackArray = response.tracks.items;
     //console.log(trackArray);
@@ -39,31 +42,59 @@ $.ajax(topTracks).then((response) => {
     });
     
 	
-});
+}); */
 
 
 
-
-$.ajax(billBoard).then(function (response) {
-	//console.log(response);
-});
-
-const settings = {
+var billboard = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://spotify23.p.rapidapi.com/playlist_tracks/?id=37i9dQZF1DX4Wsb4d7NKfP&offset=0&limit=10",
+	"url": "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5",
 	"method": "GET",
 	"headers": {
 		"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-		"X-RapidAPI-Host": "spotify23.p.rapidapi.com"
+		"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com"
 	}
 };
 
-$.ajax(settings).done(function (response) {
+
+$.ajax(billboard).then(function (response) {
 	console.log(response);
+
+	var topArray = response.content;
+
+	$.each(topArray, function(j) {
+		var topAlbum = topArray[j].album;
+		var imgCover = topArray[j].image;
+
+		console.log(topAlbum);
+		console.table(imgCover);
+
+		var topTitleEl = $('<h2>').text(topAlbum);
+		var imgCoverEl = $('<img>').attr('src', imgCover);
+
+		$(`#t-${j + 1}`).html('');
+		$(`#t-${j + 1}`).append(topTitleEl).append(imgCoverEl);
+
+		//$(`#test-${j + 1}`).attr("src", imgCover);
+		//$(`#top-title-${j + 1}`).text("<span>topAlbum</span>");
+
+		//console.log(topAlbum);
+		//console.log(imgCover);
+
+	});
 });
 
-/* var apiKey = "N2ExNGYyM2MtYjhjNi00NGMxLWE3YjgtZWE3ZTI4MWY5MmRl";
+
+
+
+
+// Dump codes
+/*
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+
+var apiKey = "N2ExNGYyM2MtYjhjNi00NGMxLWE3YjgtZWE3ZTI4MWY5MmRl";
 var artistName = "beyonce";
 var queryUrl2 = `http://api.napster.com/v2.2/${artistName}/Art.28463069/albums/top?apikey=${apiKey}&limit=5`
 var queryUrl = `https://api.napster.com/v2.2/${artistName}/art.978?apikey=${apiKey}&catalog=DE&limit=5`
