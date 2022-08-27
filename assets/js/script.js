@@ -1,50 +1,96 @@
-/*
-var artistName = "eminem";
+var searchArtistEl = $('#searchInput');
+var searchHistoryEl = $('#searchHistory');
+var maxItems = 5;
 
+let lastArtist;
+let searchHistoryArray;
 
-var topTracks = {
-	"async": true,
-	"crossDomain": true,
-	"url": `https://spotify23.p.rapidapi.com/search/?q=${artistName}&type=tracks&offset=0&limit=5&numberOfTopResults=5`,
-	"method": "GET",
-	"headers": {
-		"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-		"X-RapidAPI-Host": "spotify23.p.rapidapi.com"
-	}
+$('#searchBtn').click (() => {
+	let artistName = searchArtistEl.val();
+
+	handleSearch(artistName);
+	searchArtistEl.val('');
+
+});
+
+$(document).ready(() => {
+	searchHistoryArray = JSON.parse(localStorage.getItem('searchHistory')) || [];
+	lastArtist = searchHistoryArray[0];
+	updateSearchHistory();
+
+	if (lastArtist) {
+		getArtistTrack(lastArtist);
+	};
+});
+
+function getArtistTrack(artistName) {
+
+	var queryURL = `https://spotify23.p.rapidapi.com/search/?q=${artistName}&type=tracks&offset=0&limit=5&numberOfTopResults=5`
+	
+	$.ajax({
+		url: queryURL,
+		async: true,
+		crossDomain: true,
+		method: 'GET',
+		headers: {
+			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
+			"X-RapidAPI-Host": "spotify23.p.rapidapi.com" }
+	}).then((response) => {       // Good code to use it.
+			//console.log(response);
+    		var trackArray = response.tracks.items;
+    		console.log(trackArray);
+    
+
+    		for (var index = 0; index < trackArray.length; index++) {
+				var artist = trackArray[index].data.artists.items[0].profile.name;
+        		var cover = trackArray[index].data.albumOfTrack.coverArt.sources[1].url;
+        		var title = trackArray[index].data.albumOfTrack.name;
+        		var play = trackArray[index].data.uri;
+
+        		console.log(title);
+        		console.log(play);
+
+				var artistEl = $('<h3>').text(artist)
+				var trackTitleEl = $('<div>').text(title);
+				var albumCoverEl = $('<img>').attr('src', cover);
+
+				$(`#s-${index + 1}`).html('');
+				$(`#artName`).html('');
+				$(`#artName`).append(artistEl);
+				$(`#s-${index + 1}`).append(trackTitleEl).append(albumCoverEl);
+    			};
+			});
 };
 
- Maxed the limited # of request
- var billBoard = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-01&range=1-5",
-	"method": "GET",
-	"headers": {
-		"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-		"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com"
-	}
-}; */
+function handleSearch (artistName) {
+	if (searchHistoryArray.includes(artistName)) {
+		let repeatIndex = searchHistoryArray.indexOf(artistName);
 
+		searchHistoryArray.splice(repeatIndex, 1);
+	};
+	searchHistoryArray.unshift(artistName);
+	updateSearchHistory();
 
-/* $.ajax(topTracks).then((response) => {       // Good code.
-	//console.log(response);
-    var trackArray = response.tracks.items;
-    //console.log(trackArray);
-    
+	getArtistTrack(artistName);
+};
 
-    $.each(trackArray, function(index) {
-        //var cover = trackArray[index].data.albumOfTrack.cover.sources.url;
-        var title = trackArray[index].data.albumOfTrack.name;
-        var play = trackArray[index].data.uri;
+function updateSearchHistory() {
+	if (searchHistoryArray.length > maxItems) {
+		searchHistoryArray.pop();
+	};
+	localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArray));
 
-        console.log(title);
-        console.log(play);
-    });
-    
-	
-}); */
+	searchHistoryEl.html('');
+	for (var artist of searchHistoryArray) {
+		var newItem = $('<button type="button">'); //might need to add class
 
-
+		newItem.text(artist);
+		newItem.click((event) => {
+			getArtistTrack(event.target.textContent);
+		});
+		searchHistoryEl.append(newItem);
+	};
+};
 
 
 
@@ -92,6 +138,16 @@ $(document).ready(() => {
 
 
 // Dump codes
+
+	/* var topTracks = {
+		"async": true,
+		"crossDomain": true,
+		"url": `https://spotify23.p.rapidapi.com/search/?q=${artistName}&type=tracks&offset=0&limit=5&numberOfTopResults=5`,
+		"method": "GET",
+		"headers": {
+			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
+			"X-RapidAPI-Host": "spotify23.p.rapidapi.com"
+		} */
 /*
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./assets/js/script.js"></script>
