@@ -1,4 +1,4 @@
-
+/*
 var artistName = "eminem";
 
 
@@ -13,7 +13,7 @@ var topTracks = {
 	}
 };
 
-/* Maxed the limited # of request
+ Maxed the limited # of request
  var billBoard = {
 	"async": true,
 	"crossDomain": true,
@@ -46,22 +46,24 @@ var topTracks = {
 
 
 
-var billboard = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5",
-	"method": "GET",
-	"headers": {
-		"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-		"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com"
-	}
-};
 
 
-$.ajax(billboard).then(function (response) {
-	console.log(response);
+$(document).ready(() => {
+	var billboard = {
+		"async": true,
+		"crossDomain": true,
+		"url": "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5",
+		"method": "GET",
+		"headers": {
+			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
+			"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com"
+		}
+	};
 
-	var topArray = response.content;
+	$.ajax(billboard).then(function (response) {
+		console.log(response);
+
+		var topArray = response.content;
 
 	$.each(topArray, function(j) {
 		var topAlbum = topArray[j].album;
@@ -70,7 +72,7 @@ $.ajax(billboard).then(function (response) {
 		console.log(topAlbum);
 		console.table(imgCover);
 
-		var topTitleEl = $('<h2>').text(topAlbum);
+		var topTitleEl = $('<div>').text(topAlbum);
 		var imgCoverEl = $('<img>').attr('src', imgCover);
 
 		$(`#t-${j + 1}`).html('');
@@ -82,10 +84,10 @@ $.ajax(billboard).then(function (response) {
 		//console.log(topAlbum);
 		//console.log(imgCover);
 
+		});
 	});
+
 });
-
-
 
 
 
