@@ -5,21 +5,27 @@
 }
 
 body {
-  background-color: #352f44;
+  background-color: #111827;
 }
 
 .title {
-  background-color: #eeeeee;
-  margin: 45px;
-  padding: 15px;
-  font-size: 25px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Caveat", cursive;
+  color: white;
+  padding: 0 10px;
+  font-size: 40px;
+  display: inline-block;
+  margin: 15px 20px;
 }
 .relative {
-  margin: auto 100px auto;
+  margin: 55px;
+  left: 16em;
+  bottom: 7.7em;
+  
 }
 
-.box-card {
-  background-color: #eeeeee;
-  margin: 5em;
+ /*.box-card {
+  background-color: #f0f9ff;
+  padding: 6em;
+  border-radius: 25px;
+  max-width: 450px;
 }
