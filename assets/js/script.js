@@ -6,6 +6,52 @@ var maxItems = 5;
 let lastArtist;
 let searchHistoryArray;
 
+// initialize the top 5 songs from Billboard when page loaded
+$(document).ready(function() {
+
+	var queryURL2 = "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5"
+	
+	$.ajax({
+		url: queryURL2,
+		async: true,
+		crossDomain: true,
+		method: 'GET',
+		headers: {
+			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
+			"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com" }
+
+	}).then((response) => {
+		console.log(response);
+
+		var topArray = response.content;
+		console.log(topArray);
+
+		//for (var i = 0; i < topArray.length; i++) {
+		$.each(topArray, function(i) {
+		
+		var topAlbum = topArray[i].album;
+		var imgCover = topArray[i].image;
+
+		console.log(topAlbum);
+		console.log(imgCover);
+		
+	
+		var topTitleEl = $('<div>').text(topAlbum);
+		var imgCoverEl = $('<img>').attr('src', imgCover);
+		console.log(topTitleEl);
+		console.log(imgCover);
+
+		//$(`#top-${i + 1}`).html('');
+		//$(`#top-${i + 1}`).append(topTitleEl).append(imgCoverEl);
+		
+		//$(`#top-1`).html('');
+		$(`#top-1`).append(topTitleEl).append(imgCoverEl);
+
+		});
+	});
+
+});
+
 // Event listener to retrieve input data with button.
 $('#searchBtn').click (() => {
 	let artistName = searchArtistEl.val();
@@ -98,99 +144,3 @@ function updateSearchHistory() {
 		searchHistoryEl.append(newItem);
 	};
 };
-
-
-// initialize the top 5 songs from Billboard when page loaded
-$(document).ready(function() {
-
-	var queryURL2 = "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5"
-	
-	$.ajax({
-		url: queryURL2,
-		async: true,
-		crossDomain: true,
-		method: 'GET',
-		headers: {
-			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-			"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com" }
-
-	}).then((response) => {
-		console.log(response);
-
-		var topArray = response.content;
-		console.log(topArray);
-
-		for (var i = 0; i < topArray.length; i++) {
-	
-		var topAlbum = topArray[i].album;
-		var imgCover = topArray[i].image;
-
-		console.log(topAlbum);
-		/*
-		var topTitleEl = $('<div>').text(topAlbum);
-		var imgCoverEl = $('<img>').attr('src', imgCover);
-
-		$(`#t-${i + 1}`).html('');
-		$(`#t-${i + 1}`).append(topTitleEl).append(imgCoverEl);
-		*/
-		};
-	});
-
-});
-
-
-
-// Dump codes
-/*
-$.each(topArray, function(j) {
-	 var topTracks = {
-		"async": true,
-		"crossDomain": true,
-		"url": `https://spotify23.p.rapidapi.com/search/?q=${artistName}&type=tracks&offset=0&limit=5&numberOfTopResults=5`,
-		"method": "GET",
-		"headers": {
-			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-			"X-RapidAPI-Host": "spotify23.p.rapidapi.com"
-		} */
-/*
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/script.js"></script>
-
-var apiKey = "N2ExNGYyM2MtYjhjNi00NGMxLWE3YjgtZWE3ZTI4MWY5MmRl";
-var artistName = "beyonce";
-var queryUrl2 = `http://api.napster.com/v2.2/${artistName}/Art.28463069/albums/top?apikey=${apiKey}&limit=5`
-var queryUrl = `https://api.napster.com/v2.2/${artistName}/art.978?apikey=${apiKey}&catalog=DE&limit=5`
-var queryUrl3 = `http://api.napster.com/v2.2/search?apikey=${apiKey}&query=${artistName}&type=album$limit=5`
-var queryUrl4 = `http://api.napster.com/v2.2/search?apikey=${apiKey}&offset=5&per_type_limit=5&query=${artistName}`
-
-console.log(queryUrl3);
-
-function testAPI() {
-    $.ajax ( {
-        url: queryUrl3,
-        method: 'GET'
-    }).then((response) => {
-        console.log(response);
-        return response.json();
-        console.log(response);
-        });
-};
-
-testAPI(); */
-
-/*for (var i = 0; i < testArray.length; i++) {
-    var contentN = testArray[i].tracks;
-    console.log(contentN);
-}; 
-
-var billboard = {
-		"async": true,
-		"crossDomain": true,
-		"url": "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5",
-		"method": "GET",
-		"headers": {
-			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-			"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com"
-		}
-	};
-*/
