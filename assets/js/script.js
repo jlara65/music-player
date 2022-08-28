@@ -1,3 +1,4 @@
+// set the variables 
 var searchArtistEl = $('#searchInput');
 var searchHistoryEl = $('#searchHistory');
 var maxItems = 5;
@@ -5,6 +6,7 @@ var maxItems = 5;
 let lastArtist;
 let searchHistoryArray;
 
+// Event listener to retrieve input data with button.
 $('#searchBtn').click (() => {
 	let artistName = searchArtistEl.val();
 
@@ -13,6 +15,7 @@ $('#searchBtn').click (() => {
 
 });
 
+// Run this function to search the history from localStorage when page is load.
 $(document).ready(() => {
 	searchHistoryArray = JSON.parse(localStorage.getItem('searchHistory')) || [];
 	lastArtist = searchHistoryArray[0];
@@ -21,8 +24,11 @@ $(document).ready(() => {
 	if (lastArtist) {
 		getArtistTrack(lastArtist);
 	};
+
+
 });
 
+// function to fetch the music API to search artist's top 5 tracks
 function getArtistTrack(artistName) {
 
 	var queryURL = `https://spotify23.p.rapidapi.com/search/?q=${artistName}&type=tracks&offset=0&limit=5&numberOfTopResults=5`
@@ -45,10 +51,9 @@ function getArtistTrack(artistName) {
 				var artist = trackArray[index].data.artists.items[0].profile.name;
         		var cover = trackArray[index].data.albumOfTrack.coverArt.sources[1].url;
         		var title = trackArray[index].data.albumOfTrack.name;
-        		var play = trackArray[index].data.uri;
+        		//var play = trackArray[index].data.uri;
 
         		console.log(title);
-        		console.log(play);
 
 				var artistEl = $('<h3>').text(artist)
 				var trackTitleEl = $('<div>').text(title);
@@ -62,6 +67,7 @@ function getArtistTrack(artistName) {
 			});
 };
 
+// function to look at the searchHistoryArray to update and execute search
 function handleSearch (artistName) {
 	if (searchHistoryArray.includes(artistName)) {
 		let repeatIndex = searchHistoryArray.indexOf(artistName);
@@ -74,6 +80,7 @@ function handleSearch (artistName) {
 	getArtistTrack(artistName);
 };
 
+// function to update the search history list. 
 function updateSearchHistory() {
 	if (searchHistoryArray.length > maxItems) {
 		searchHistoryArray.pop();
@@ -93,44 +100,40 @@ function updateSearchHistory() {
 };
 
 
+// initialize the top 5 songs from Billboard when page loaded
+$(document).ready(function() {
 
-$(document).ready(() => {
-	var billboard = {
-		"async": true,
-		"crossDomain": true,
-		"url": "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5",
-		"method": "GET",
-		"headers": {
+	var queryURL2 = "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5"
+	
+	$.ajax({
+		url: queryURL2,
+		async: true,
+		crossDomain: true,
+		method: 'GET',
+		headers: {
 			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-			"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com"
-		}
-	};
+			"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com" }
 
-	$.ajax(billboard).then(function (response) {
+	}).then((response) => {
 		console.log(response);
 
 		var topArray = response.content;
+		console.log(topArray);
 
-	$.each(topArray, function(j) {
-		var topAlbum = topArray[j].album;
-		var imgCover = topArray[j].image;
+		for (var i = 0; i < topArray.length; i++) {
+	
+		var topAlbum = topArray[i].album;
+		var imgCover = topArray[i].image;
 
 		console.log(topAlbum);
-		console.table(imgCover);
-
+		/*
 		var topTitleEl = $('<div>').text(topAlbum);
 		var imgCoverEl = $('<img>').attr('src', imgCover);
 
-		$(`#t-${j + 1}`).html('');
-		$(`#t-${j + 1}`).append(topTitleEl).append(imgCoverEl);
-
-		//$(`#test-${j + 1}`).attr("src", imgCover);
-		//$(`#top-title-${j + 1}`).text("<span>topAlbum</span>");
-
-		//console.log(topAlbum);
-		//console.log(imgCover);
-
-		});
+		$(`#t-${i + 1}`).html('');
+		$(`#t-${i + 1}`).append(topTitleEl).append(imgCoverEl);
+		*/
+		};
 	});
 
 });
@@ -138,8 +141,9 @@ $(document).ready(() => {
 
 
 // Dump codes
-
-	/* var topTracks = {
+/*
+$.each(topArray, function(j) {
+	 var topTracks = {
 		"async": true,
 		"crossDomain": true,
 		"url": `https://spotify23.p.rapidapi.com/search/?q=${artistName}&type=tracks&offset=0&limit=5&numberOfTopResults=5`,
@@ -177,4 +181,16 @@ testAPI(); */
 /*for (var i = 0; i < testArray.length; i++) {
     var contentN = testArray[i].tracks;
     console.log(contentN);
-}; */
+}; 
+
+var billboard = {
+		"async": true,
+		"crossDomain": true,
+		"url": "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5",
+		"method": "GET",
+		"headers": {
+			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
+			"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com"
+		}
+	};
+*/
