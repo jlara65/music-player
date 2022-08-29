@@ -1,146 +1,114 @@
-// set the variables 
-var searchArtistEl = $('#searchInput');
-var searchHistoryEl = $('#searchHistory');
-var maxItems = 5;
+// initialize functions when page loaded
+$(document).ready(() => {
+	initializeBillboard();
+	initializeSearchHistory();
+});
 
-let lastArtist;
-let searchHistoryArray;
+// Event listener to retrieve input data with button and send it to functions.
+$('.search-btn').on('click', () => {
+	let $searchArtist = $('.search-input');
+	let artistName = $searchArtist.val();
+	updateSearchHistory(artistName);
+	getArtistTrack(artistName);
+	$searchArtist.val('');
+});
 
-// initialize the top 5 songs from Billboard when page loaded
-$(document).ready(function() {
+// History of search list button. trigger when click and start getArtistTrack function using delegated event handlers.
+$('.search-history').on('click', '.search-history-item', event => {
+	const artistName = $(event.target).data('artist');
+	getArtistTrack(artistName);
+});
 
-	var queryURL2 = "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5"
-	
+// Initialize to display the top 5 billboard albums
+function initializeBillboard() {
 	$.ajax({
-		url: queryURL2,
-		async: true,
+		url: 'https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5',
 		crossDomain: true,
 		method: 'GET',
 		headers: {
-			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-			"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com" }
+			'X-RapidAPI-Key': '1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702',
+			'X-RapidAPI-Host': 'billboard-api2.p.rapidapi.com' 
+		}
+	}).then(response => {
+		var content = response?.content; // "?" is the optional chaining operator to check if the data either undefined or null. 
 
-	}).then((response) => {
-		console.log(response);
+		$.each(content, (index, album) => {
+			const $album = $('<div class="album">')
+				.text(album?.album)
+				.append(`<br><img src="${album?.image}" />`);
 
-		var topArray = response.content;
-		console.log(topArray);
-
-		//for (var i = 0; i < topArray.length; i++) {
-		$.each(topArray, function(i) {
-		
-		var topAlbum = topArray[i].album;
-		var imgCover = topArray[i].image;
-
-		console.log(topAlbum);
-		console.log(imgCover);
-		
-	
-		var topTitleEl = $('<div>').text(topAlbum);
-		var imgCoverEl = $('<img>').attr('src', imgCover);
-		console.log(topTitleEl);
-		console.log(imgCover);
-
-		//$(`#top-${i + 1}`).html('');
-		//$(`#top-${i + 1}`).append(topTitleEl).append(imgCoverEl);
-		
-		//$(`#top-1`).html('');
-		$(`#top-1`).append(topTitleEl).append(imgCoverEl);
-
+			$('.albums').append($album);
 		});
 	});
+}
 
-});
+// function the last 
+function initializeSearchHistory() {
+	const lastArtistName = updateSearchHistory();
 
-// Event listener to retrieve input data with button.
-$('#searchBtn').click (() => {
-	let artistName = searchArtistEl.val();
-
-	handleSearch(artistName);
-	searchArtistEl.val('');
-
-});
-
-// Run this function to search the history from localStorage when page is load.
-$(document).ready(() => {
-	searchHistoryArray = JSON.parse(localStorage.getItem('searchHistory')) || [];
-	lastArtist = searchHistoryArray[0];
-	updateSearchHistory();
-
-	if (lastArtist) {
-		getArtistTrack(lastArtist);
-	};
-
-
-});
+	if (lastArtistName) {
+		getArtistTrack(lastArtistName);
+	}
+}
 
 // function to fetch the music API to search artist's top 5 tracks
 function getArtistTrack(artistName) {
-
-	var queryURL = `https://spotify23.p.rapidapi.com/search/?q=${artistName}&type=tracks&offset=0&limit=5&numberOfTopResults=5`
-	
 	$.ajax({
-		url: queryURL,
-		async: true,
+		url: `https://spotify23.p.rapidapi.com/search/?q=${artistName}&type=tracks&offset=0&limit=5&numberOfTopResults=5`,
 		crossDomain: true,
 		method: 'GET',
 		headers: {
-			"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-			"X-RapidAPI-Host": "spotify23.p.rapidapi.com" }
-	}).then((response) => {       // Good code to use it.
-			//console.log(response);
-    		var trackArray = response.tracks.items;
-    		console.log(trackArray);
-    
+			'X-RapidAPI-Key': '1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702',
+			'X-RapidAPI-Host': 'spotify23.p.rapidapi.com' 
+		}
+	}).then(response => { // Good code to use it.
+		const tracks = response?.tracks?.items;
+		$('.tracks').empty();
 
-    		for (var index = 0; index < trackArray.length; index++) {
-				var artist = trackArray[index].data.artists.items[0].profile.name;
-        		var cover = trackArray[index].data.albumOfTrack.coverArt.sources[1].url;
-        		var title = trackArray[index].data.albumOfTrack.name;
-        		//var play = trackArray[index].data.uri;
+		tracks.forEach(track => {
+			const data = track?.data;
+			// const play = data.uri;
+			// console.log(play);
 
-        		console.log(title);
-
-				var artistEl = $('<h3>').text(artist)
-				var trackTitleEl = $('<div>').text(title);
-				var albumCoverEl = $('<img>').attr('src', cover);
-
-				$(`#s-${index + 1}`).html('');
-				$(`#artName`).html('');
-				$(`#artName`).append(artistEl);
-				$(`#s-${index + 1}`).append(trackTitleEl).append(albumCoverEl);
-    			};
-			});
-};
-
-// function to look at the searchHistoryArray to update and execute search
-function handleSearch (artistName) {
-	if (searchHistoryArray.includes(artistName)) {
-		let repeatIndex = searchHistoryArray.indexOf(artistName);
-
-		searchHistoryArray.splice(repeatIndex, 1);
-	};
-	searchHistoryArray.unshift(artistName);
-	updateSearchHistory();
-
-	getArtistTrack(artistName);
-};
+			const $track = $('<h3>')
+				.text(data?.artists?.items[0]?.profile?.name)
+				.append(`
+					<h5>${data?.albumOfTrack?.name}</h5>
+					<img src="${data?.albumOfTrack?.coverArt?.sources[1]?.url}" />
+				`);
+			$('.tracks').append($track);
+		});
+	});
+}
 
 // function to update the search history list. 
-function updateSearchHistory() {
-	if (searchHistoryArray.length > maxItems) {
-		searchHistoryArray.pop();
-	};
-	localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArray));
+function updateSearchHistory(artistName) {
+	let maxItems = 5;
+	let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
-	searchHistoryEl.html('');
-	for (var artist of searchHistoryArray) {
-		var newItem = $('<button type="button">'); //might need to add class
+	if (artistName) {
+		if (searchHistory.includes(artistName)) {
+			let repeatIndex = searchHistory.indexOf(artistName);
+			searchHistory.splice(repeatIndex, 1);
+		}
+	
+		searchHistory.unshift(artistName);
+	}
 
-		newItem.text(artist);
-		newItem.click((event) => {
-			getArtistTrack(event.target.textContent);
-		});
-		searchHistoryEl.append(newItem);
-	};
-};
+	if (searchHistory.length > maxItems) {
+		searchHistory.pop();
+	}
+
+	localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+	$('.search-history').empty();
+
+	for (var artist of searchHistory) {
+		var searchHistoryItem = $('<button type="button" class="search-history-item">');
+		searchHistoryItem.text(artist).data('artist', artist);
+		$('.search-history').append(searchHistoryItem);
+	}
+
+	let lastArtist = searchHistory[0];
+
+	return lastArtist;
+}

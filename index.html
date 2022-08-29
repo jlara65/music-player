@@ -1,46 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <input type="text" placeholder="Artist Name" aria-label="Artist name"
-            aria-describedby="searchBtn" id="searchInput">
-    </div>
-    <div>
-        <button type="button" id="searchBtn">
-            Search
-        </button>
-    </div>
-    <div id="searchHistory"></div>
-
-    <div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="search-container">
+            <input type="text" placeholder="Artist Name" aria-label="Artist name" aria-describedby="search-btn" class="search-input">
+            <br>
+            <button type="button" class="search-btn">
+                Search
+            </button>
+        </div>
+        <div class="search-history"></div>
         <h4>Top 5 Billboard</h4>
-    </div>
-    <div id="top-1"></div>
-    <div id="top-2"></div>
-    <div id="top-3"></div>
-    <div id="top-4"></div>
-    <div id="top-5"></div>
-        
-    <div>
-        <h4>Artist's top 5 tracks</h4>
-    </div>
-    <div id="artName"></div>
-    <div id="s-1"></div>
-    <div id="s-2"></div>
-    <div id="s-3"></div>
-    <div id="s-4"></div>
-    <div id="s-5"></div>
-    
-        
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/script.js"></script>
-
-</body>
+        <div class="albums"></div>
+        <h4>Artist's Top 5 Tracks</h4>
+        <div class="tracks"></div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="./assets/js/script.js"></script>
+    </body>
 </html>
