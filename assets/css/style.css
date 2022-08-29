@@ -1,11 +1,11 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
   background-color: #111827;
+  max-width: 105em;
 }
 
 .title {
@@ -20,12 +20,35 @@ body {
   margin: 55px;
   left: 16em;
   bottom: 7.7em;
-  
+}
+.box-card {
+  margin: 10px 25px;
+  padding: 15px;
+}
+.song-box {
+  border-radius: 25px;
+  margin: 25px;
+}
+.img-card {
+  width: 100px;
+}
+.h-card {
+  max-width: fit-content;
+}
+.h-box {
+  border-radius: 25px;
+  margin: 20px;
+}
+.album-box {
+  position: relative;
+  max-width: 600px;
+  border-radius: 25px;
+  top: -600px;
+  left: 60em;
 }
 
- /*.box-card {
-  background-color: #f0f9ff;
-  padding: 6em;
+.card-title {
+  margin: 25px;
+  padding: 25px;
   border-radius: 25px;
-  max-width: 450px;
 }
