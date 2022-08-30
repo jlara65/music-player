@@ -67,20 +67,19 @@ function getArtistTrack(artistName) {
 
 		tracks.forEach(track => {
 			const data = track?.data;
-			// const play = data.uri;
-			// console.log(play);
+			console.log(data);
 
 			const $track = $('<h3>')
 				.text(data?.artists?.items[0]?.profile?.name)
 				.append(`
 					<h5>${data?.albumOfTrack?.name}</h5>
-					<img src="${data?.albumOfTrack?.coverArt?.sources[1]?.url}" />
+					<br><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${data.id}?utm_source=generator" width="40%" height="90" frameBorder="0" allowfullscreen="" 
+					allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 				`);
 			$('.tracks').append($track);
 		});
 	});
 }
-
 // function to update the search history list. 
 function updateSearchHistory(artistName) {
 	let maxItems = 5;
