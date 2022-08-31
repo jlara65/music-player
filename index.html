@@ -1,29 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="./assets/css/style.css">
-
-        <title>Document</title>
-    </head>
-    <body>
-        <div class="search-container">
-            <input type="text" placeholder="Artist Name" aria-label="Artist name" aria-describedby="search-btn" class="search-input">
-            <br>
-            <button type="button" class="search-btn ">
-                Search
-            </button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/js/script.js"></script>
+    <title>Music App</title>
+  </head>
+  <body>
+    <!--header-->
+    <header>
+      <!--web title-->
+      <div class="title">
+        <h1 class="font-semibold rounded-full">Music Player</h1>
+      </div>
+      <!--search bar-->
+      <form>
+        <label
+          for="default-search"
+          class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
+          >Search</label
+        >
+        <div class="relative">
+          <div
+            class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+          </div>
+          <input
+            type="search"
+            class="search-input p-4 pl-10 w-3/4 text-sm text-violet-900 bg-violet-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search artists, songs, or albums"
+            required
+          />
+          <button
+            type="submit"
+            class=" search-btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Search
+          </button>
         </div>
+      </form>
+    </header>
+    <!--Main-->
+    <main>
+      <!-- top 5 songs section-->
+      <section class=" flex justify-start text-blue-300 box-card">
+        <!--title song-->
+        <article class="albums"></article>
+       
+      </section>
+      <!--end section -->
+
+      <!--section history-->
+      <section class=" flex flex-col h-card">
+        <h3 class="text-center">Your history</h3>
+        <!-- id for every history-->
         <div class="search-history"></div>
-        <h4>Top 5 Billboard</h4>
-        <div class="albums"></div>
-        <h4>Artist's Top 5 Tracks</h4>
-        <div class="tracks"></div>
-        <div class="p"></div>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="./assets/js/script.js"></script>
-    </body>
+           
+        </article>
+      </section>
+      <!--end of section-->
+          <section class="bg-emerald-50 album-box tracks">
+              <!--Music section-->
+              <img class="  object-center w-24 h-24" src="" alt="">
+              <div class="card-title">
+                </div>
+            </section>
+    </main>
+    <!--footer-->
+    <footer>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam hic
+        quaerat quod sapiente id ipsa aspernatur non accusantium dicta mollitia
+        expedita dolorem, illo necessitatibus impedit soluta explicabo quisquam,
+        exercitationem ad.
+      </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+
+    
+  </body>
 </html>

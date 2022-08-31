@@ -33,9 +33,9 @@ function initializeBillboard() {
 		var content = response?.content; // "?" is the optional chaining operator to check if the data either undefined or null. 
 
 		$.each(content, (index, album) => {
-			const $album = $('<div class="album">')
+			const $album = $('<article class="album song-box">')
 				.text(album?.album)
-				.append(`<br><img src="${album?.image}" />`);
+				.append(`<br><img class="img-card" src="${album?.image}" />`);
 
 			$('.albums').append($album);
 		});
@@ -102,7 +102,7 @@ function updateSearchHistory(artistName) {
 	$('.search-history').empty();
 
 	for (var artist of searchHistory) {
-		var searchHistoryItem = $('<button type="button" class="search-history-item">');
+		var searchHistoryItem = $('<button type="button" class="search-history-item bg-emerald-50 h-box"">');
 		searchHistoryItem.text(artist).data('artist', artist);
 		$('.search-history').append(searchHistoryItem);
 	}
