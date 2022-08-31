@@ -10,4 +10,4 @@ The demo music player is here to give users change to test out the music they lo
 ![Screenshot](./assets/images/Music%20App%20Screenshot.png)
 
 ## GitHub Page Link
-Click [here]() to search artists you want to listen the demo songs.
+Click [here](https://jlara65.github.io/music-player/) to search artists you want to listen the demo songs.
