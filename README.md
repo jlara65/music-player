@@ -1,6 +1,7 @@
 # Demo Music Player
 The demo music player is here to give users a chance to test out the music they love. They can also view musicians, their albums, and the top 5 songs today.
 
+![image](https://user-images.githubusercontent.com/109999331/187582956-0aab0f32-599f-49f9-98bc-c1df205c526e.png)
 
 
 AS A Music Lover
