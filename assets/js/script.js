@@ -22,7 +22,7 @@ $('.search-history').on('click', '.search-history-item', event => {
 // Initialize to display the top 5 billboard albums
 function initializeBillboard() {
 	$.ajax({
-		url: 'https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-10&range=1-5',
+		url: 'https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-26&range=1-5',
 		crossDomain: true,
 		method: 'GET',
 		headers: {
@@ -33,16 +33,17 @@ function initializeBillboard() {
 		var content = response?.content; // "?" is the optional chaining operator to check if the data either undefined or null. 
 
 		$.each(content, (index, album) => {
-			const $album = $('<div class="album">')
+			const $album = $('<span>')
 				.text(album?.album)
-				.append(`<br><img src="${album?.image}" />`);
+				.append(`<img class="flex justify- rounded m-0" src="${album?.image}" width="75%" height="75%"/>`);
 
 			$('.albums').append($album);
 		});
 	});
 }
 
-// function the last 
+
+// function initialize the last search in history to send getArtistTrack
 function initializeSearchHistory() {
 	const lastArtistName = updateSearchHistory();
 
@@ -72,8 +73,7 @@ function getArtistTrack(artistName) {
 			const $track = $('<h3>')
 				.text(data?.artists?.items[0]?.profile?.name)
 				.append(`
-					<h5>${data?.albumOfTrack?.name}</h5>
-					<br><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${data.id}?utm_source=generator" width="40%" height="90" frameBorder="0" allowfullscreen="" 
+					<br><iframe class="" style="border-radius:12px" src="https://open.spotify.com/embed/track/${data.id}?utm_source=generator" width="99%" height="80" frameBorder="0" allowfullscreen="" 
 					allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 				`);
 			$('.tracks').append($track);
@@ -102,7 +102,7 @@ function updateSearchHistory(artistName) {
 	$('.search-history').empty();
 
 	for (var artist of searchHistory) {
-		var searchHistoryItem = $('<button type="button" class="search-history-item">');
+		var searchHistoryItem = $('<button type="button" class="search-history-item bg-emerald-50 h-box"">');
 		searchHistoryItem.text(artist).data('artist', artist);
 		$('.search-history').append(searchHistoryItem);
 	}
