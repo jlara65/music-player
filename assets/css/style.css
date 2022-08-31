@@ -34,9 +34,11 @@
     width: 100px;
   }
   .h-card {
+    color: white;
     max-width: fit-content;
   }
   .h-box {
+    color:#111827
     border-radius: 25px;
     margin: 20px;
   }
@@ -53,8 +55,28 @@
     padding: 25px;
     border-radius: 25px;
   }
-.card-title {
-  margin: 25px;
-  padding: 25px;
-  border-radius: 25px;
-}
+  #h-1 {
+    color: #111827;
+    align-items: center;
+    padding: 2px
+  }
+  #h-2 {
+    color: #111827;
+    align-items: center;
+    padding: 2px
+  }
+  #h-3 {
+    color: #111827;
+    align-items: center;
+    padding: 2px
+  }
+  #h-4 {
+    color: #111827;
+    align-items: center;
+    padding: 2px
+  }
+  #h-5 {
+    color: #111827;
+    align-items: center;
+    padding: 2px
+  }
