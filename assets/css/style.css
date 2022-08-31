@@ -29,22 +29,13 @@ body {
   border-radius: 25px;
   margin: 25px;
 }
-.img-card {
-  width: 100px;
-}
+
 .h-card {
   max-width: fit-content;
 }
 .h-box {
   border-radius: 25px;
   margin: 20px;
-}
-.album-box {
-  position: relative;
-  max-width: 600px;
-  border-radius: 25px;
-  top: -600px;
-  left: 60em;
 }
 
 .card-title {
