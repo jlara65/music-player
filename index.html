@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./assets/js/script.js"></script>
     <title>Music App</title>
   </head>
   <body>
@@ -46,7 +45,7 @@
           <input
             type="search"
             class="search-input p-4 pl-10 w-3/4 text-sm text-violet-900 bg-violet-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search artists, songs, or albums"
+            placeholder="Search artists"
             required
           />
           <button
@@ -59,32 +58,30 @@
       </form>
     </header>
     <!--Main-->
-    <main>
-      <!-- top 5 songs section-->
-      <section class=" flex justify-start text-blue-300 box-card">
-        <!--title song-->
-        <article class="albums"></article>
-       
-      </section>
-      <!--end section -->
-
-      <!--section history-->
-      <section class=" flex flex-col h-card">
-        <h3 class="text-center">Your history</h3>
-        <!-- id for every history-->
-        <div class="search-history"></div>
-           
-        </article>
-      </section>
-      <!--end of section-->
-          <section class="bg-emerald-50 album-box tracks">
-              <!--Music section-->
-              <img class="  object-center w-24 h-24" src="" alt="">
-              <div class="card-title">
+    <main class="container m-o">
+        <div class="grid overflow-hidden grid-cols-2 grid-rows-2 gap-2">
+            <div class="box border-4 rounded-md">
+                <!-- top 5 songs section-->
+                <div class="">
+                    <h2 class="text-center uppercase font-bold">Top 5 Albums Billboard</h2>
+                    <div class="albums flex w-auto grid-auto-flow" style="max-width:500px"></div>
                 </div>
-            </section>
+            </div>
+            <!--List of Artist's Top 5 Track-->
+            <div class="box border-4 row-span-2 rounded-md">
+                <h2 class="text-center uppercase font-bold">Artist's Top 5 Tracks</h2>
+                <div class=" tracks h-full">
+                    
+                </div>
+            </div>
+            <!--Search history button-->
+            <div class="box border-4 rounded-md">
+                <h2 class="text-center uppercase font-bold">Your history</h2>
+                <div class="search-history flex flex-col"></div>
+            </div>
+        </div>   
     </main>
-    <!--footer-->
+    <!--footer
     <footer>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam hic
@@ -92,7 +89,7 @@
         expedita dolorem, illo necessitatibus impedit soluta explicabo quisquam,
         exercitationem ad.
       </p>
-    </footer>
+    </footer> -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./assets/js/script.js"></script>
