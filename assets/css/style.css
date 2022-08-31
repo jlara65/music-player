@@ -1,13 +1,19 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+:root {
+  --ice-color: #a0d2eb;
+  --freeze-color: #e5eaf5;
+  --medi-color: #d0bdf4;
+  --pain-color: #8458b3;
+  --heavy-color: #111827;
+}
+
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
-  background-color: #111827;
-  max-width: 105em;
+  background-color: var(--heavy-color);
+  max-width: 100%;
 }
 
 .title {
@@ -23,72 +29,15 @@ body {
   left: 16em;
   bottom: 7.7em;
 }
-.box-card {
-  margin: 10px 25px;
-  padding: 15px;
-}
-.song-box {
-  border-radius: 25px;
-  margin: 25px;
-}
-
-.h-card {
-  max-width: fit-content;
-}
-.h-box {
-  border-radius: 25px;
-  margin: 20px;
-}
-
-.card-title {
-  margin: 25px;
-  padding: 25px;
-  border-radius: 25px;
-}
-=======
-var artistName = "eminem";
-=======
-:root {
-	--ice-color: #a0d2eb;
-	--freeze-color: #e5eaf5;
-	--medi-color: #d0bdf4;
-	--pain-color: #8458B3;
-	--heavy-color: #111827;
-}
->>>>>>> dfb654b5411cfeef136714a54f2d7a4d2acd23fd
-
-* {
-	margin: 0;
-	padding: 0;
-  }
-
-  body {
-	background-color: var(--heavy-color);
-	 max-width: 100%; 
-  }
-  
-  .title {
-	font-family: "Caveat", cursive;
-	color: white;
-	padding: 0 10px;
-	font-size: 40px;
-	display: inline-block;
-	margin: 15px 20px;
-  }
-  .relative {
-	margin: 55px;
-	left: 16em;
-	bottom: 7.7em;
-  }
-  /* .box-card {
+/* .box-card {
 	margin: 10px 25px;
 	padding: 15px; 
   }*/
-  .box {
-	background-color: var(--medi-color);
-	border-color: var(--freeze-color);
-  }
-  /* .song-box {
+.box {
+  background-color: var(--medi-color);
+  border-color: var(--freeze-color);
+}
+/* .song-box {
 	border-radius: 25px;
 	margin: 25px;
   }
@@ -107,53 +56,10 @@ var artistName = "eminem";
 	border-radius: 25px;
   } */
 
-<<<<<<< HEAD
-	for (var i = 0; i < trackArray.length; i++) {
-		console.log(trackArray);
-    };
-	});
-
-
-
-const billBoard = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://billboard-api2.p.rapidapi.com/billboard-200?date=2022-08-01&range=1-5",
-	"method": "GET",
-	"headers": {
-		"X-RapidAPI-Key": "1b67c35036mshade3492e44ff5e0p1761b2jsnbca7fe3e0702",
-		"X-RapidAPI-Host": "billboard-api2.p.rapidapi.com"
-	}
-};
-
-$.ajax(billBoard).done(function (response) {
-	//console.log(response);
-});
-
-/* var apiKey = "N2ExNGYyM2MtYjhjNi00NGMxLWE3YjgtZWE3ZTI4MWY5MmRl";
-var artistName = "beyonce";
-var queryUrl2 = `http://api.napster.com/v2.2/${artistName}/Art.28463069/albums/top?apikey=${apiKey}&limit=5`
-var queryUrl = `https://api.napster.com/v2.2/${artistName}/art.978?apikey=${apiKey}&catalog=DE&limit=5`
-var queryUrl3 = `http://api.napster.com/v2.2/search?apikey=${apiKey}&query=${artistName}&type=album$limit=5`
-var queryUrl4 = `http://api.napster.com/v2.2/search?apikey=${apiKey}&offset=5&per_type_limit=5&query=${artistName}`
-
-console.log(queryUrl3);
-
-function testAPI() {
-    $.ajax ( {
-        url: queryUrl3,
-        method: 'GET'
-    }).then((response) => {
-        console.log(response);
-        return response.json();
-        console.log(response);
-        });
-};
-
-testAPI(); */
->>>>>>> ce517752225df4e811dd92135d975fae07b8dd54
-=======
-  h2, h3, h4, h5, h6 {
-	color: var(--heavy-color);
-  }
->>>>>>> dfb654b5411cfeef136714a54f2d7a4d2acd23fd
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heavy-color);
+}
