@@ -8,12 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Music App</title>
   </head>
+
   <body>
     <!--header-->
     <header>
       <!--web title-->
       <div class="title">
-        <h1 class="font-semibold rounded-full">Music Player</h1>
+        <h1 class="text-center font-semibold rounded-full">Music Player</h1>
       </div>
       <!--search bar-->
       <form>
@@ -22,7 +23,7 @@
           class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
           >Search</label
         >
-        <div class="relative">
+        <div class="relative lg:left-52">
           <div
             class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
           >
@@ -58,9 +59,9 @@
       </form>
     </header>
     <!--Main-->
-    <main class="container m-o">
+    <main class="container m-auto p-28">
       <div class="grid overflow-hidden grid-cols-2 grid-rows-2 gap-2">
-        <div class="box border-4 rounded-md">
+        <div class="box border-4 rounded-md flex justify-around">
           <!-- top 5 songs section-->
           <div class="">
             <h2 class="text-center uppercase font-bold">
@@ -78,7 +79,7 @@
           <div class="tracks h-full"></div>
         </div>
         <!--Search history button-->
-        <div class="box border-4 rounded-md">
+        <div class="box rounded-md">
           <h2 class="text-center uppercase font-bold">Your history</h2>
           <div class="search-history flex flex-col"></div>
         </div>
