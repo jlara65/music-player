@@ -99,8 +99,16 @@ function updateSearchHistory(artistName) {
     searchHistory.pop();
   }
 
+<<<<<<< HEAD
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
   $(".search-history").empty();
+=======
+	for (var artist of searchHistory) {
+		var searchHistoryItem = $('<button type="button" class="search-history-item bg-freeze-purple h-box"">');
+		searchHistoryItem.text(artist).data('artist', artist);
+		$('.search-history').append(searchHistoryItem);
+	}
+>>>>>>> 253727fdc95bd116968379550c2fae1cab6d3be0
 
   for (var artist of searchHistory) {
     var searchHistoryItem = $(
