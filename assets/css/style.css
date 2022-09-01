@@ -1,42 +1,43 @@
 :root {
-  --ice-color: #a0d2eb;
-  --freeze-color: #e5eaf5;
-  --medi-color: #d0bdf4;
-  --pain-color: #8458b3;
-  --heavy-color: #111827;
+	--ice-color: #a0d2eb;
+	--freeze-color: #e5eaf5;
+	--medi-color: #d0bdf4;
+	--pain-color: #8458B3;
+	--heavy-color: #111827;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-}
+	margin: 0;
+	padding: 0;
+  }
 
-body {
-  background-color: var(--heavy-color);
-  max-width: 100%;
-}
-
-.title {
-  font-family: "Caveat", cursive;
-  color: white;
-  padding: 0 10px;
-  font-size: 40px;
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/jeniree
-  margin: 15px 20px;
-}
-
-/* .box-card {
+  body {
+	background-color: var(--heavy-color);
+	 max-width: 100%; 
+  }
+  
+  .title {
+	font-family: "Caveat", cursive;
+	color: white;
+	padding: 0 10px;
+	font-size: 40px;
+	display: inline-block;
+	margin: 15px 20px;
+  }
+  .relative {
+	margin: 55px;
+	left: 16em;
+	bottom: 7.7em;
+  }
+  /* .box-card {
 	margin: 10px 25px;
 	padding: 15px; 
   }*/
-.box {
-  background-color: var(--medi-color);
-  border-color: var(--freeze-color);
-}
-/* .song-box {
+  .box {
+	background-color: var(--medi-color);
+	border-color: var(--freeze-color);
+  }
+  /* .song-box {
 	border-radius: 25px;
 	margin: 25px;
   }
@@ -55,10 +56,6 @@ body {
 	border-radius: 25px;
   } */
 
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--heavy-color);
-}
+  h2, h3, h4, h5, h6 {
+	color: var(--heavy-color);
+  }
