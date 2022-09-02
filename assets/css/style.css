@@ -25,32 +25,10 @@
 	margin: 15px 20px;
   }
   
-  /* .box-card {
-	  margin: 10px 25px;
-	  padding: 15px; 
-	}*/
   .box {
 	background-color: var(--medi-color);
 	border-color: var(--freeze-color);
   }
-  /* .song-box {
-	  border-radius: 25px;
-	  margin: 25px;
-	}
-	
-	.h-card {
-	  max-width: fit-content;
-	}
-	.h-box {
-	  border-radius: 25px;
-	  margin: 20px;
-	}
-	
-	.card-title {
-	  margin: 25px;
-	  padding: 25px;
-	  border-radius: 25px;
-	} */
   
   h2,
   h3,
