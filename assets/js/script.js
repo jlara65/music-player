@@ -102,7 +102,7 @@ function updateSearchHistory(artistName) {
 	$('.search-history').empty();
 
 	for (var artist of searchHistory) {
-		var searchHistoryItem = $('<button type="button" class="search-history-item bg-emerald-50 h-box"">');
+		var searchHistoryItem = $('<button type="button" class="search-history-item bg-emerald-50 rounded-full">');
 		searchHistoryItem.text(artist).data('artist', artist);
 		$('.search-history').append(searchHistoryItem);
 	}
